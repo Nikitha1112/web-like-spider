@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar Styles */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #7e1e9c;
+            padding: 15px 30px;
+            color: white;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #d8a3db;
+        }
+
+        /* Profile Picture Styles */
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background-image: url('/public/home-bg.jpg'); /* Placeholder */
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            position: relative; /* Add relative positioning */
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            padding: 0 20px; /* Add horizontal padding */
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin-bottom: 20px;
+            padding: 0 20px; /* Add horizontal padding */
+        }
+
+        .cta-button {
+            background-color: #d8a3db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 15px; /* Add margin to create spacing */
+        }
+
+        .cta-button:hover {
+            background-color: #b77bb5;
+            transform: scale(1.05);
+        }
+
+        /* Stories Section */
+        .stories {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom right, #ffffff, #f1f1f1);
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        .stories h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .story-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .story-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .story-card h3 {
+            padding: 15px;
+            font-size: 20px;
+        }
+
+        .story-card p {
+            padding: 0 15px 15px;
+            color: #666;
+        }
+
+        .button-container {
+            padding: 0 15px 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #7e1e9c;
+        }
+
+        .like-comment-btn {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .like-comment-btn:hover {
+            color: #b77bb5;
+        }
+
+        /* Top Creators Section */
+        .top-creators {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #f1f1f1;
+        }
+
+        .top-creators h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .creator {
+            font-size: 20px;
+            margin: 10px 0;
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #e1e1e1;
+        }
+
+        .gold-badge::before {
+            content: "🏅";
+            margin-right: 5px;
+        }
+
+        .silver-cup::before {
+            content: "🥈";
+            margin-right: 5px;
+        }
+
+        .bronze-cup::before {
+            content: "🥉";
+            margin-right: 5px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom right, #ffffff, #f1f1f1);
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        .testimonials h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial {
+            font-size: 16px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background: #7e1e9c;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Back-to-Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #7e1e9c;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        #back-to-top:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .story-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .story-card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">My Blog</div>
+        <ul>
+            
+            <li><a href="#your-posts">My Stories</a></li>
+            <li><a href="/texteditor">Launch New</a></li>
+            <li><a href="#profile"><img src="https://via.placeholder.com/40" alt="Profile" class="profile-pic"></a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to My Blog</h1>
+        <p>Discover inspiring stories, connect with creators, and embark on a journey through a world of ideas. Your next favorite read is just a click away.</p>
+        <a href="/explore" class="cta-button">Explore Blogs</a>
+    </section>
+
+    <!-- Stories Section -->
+    <section id="stories" class="stories">
+        <h2>Latest Stories</h2>
+        <div class="story-container">
+            <!-- Added 5 story cards as requested -->
+            <div class="story-card">
+                <img src="https://via.placeholder.com/300x200" alt="Story 1">
+                <h3>Story Title 1</h3>
+                <p>Brief description of story 1. Engaging content goes here.</p>
+                <div class="button-container">
+                    <span class="like-comment-btn">👍 Like</span>
+                    <span class="like-comment-btn">💬 Comment</span>
+                </div>
+            </div>
+            <div class="story-card">
+                <img src="https://via.placeholder.com/300x200" alt="Story 2">
+                <h3>Story Title 2</h3>
+                <p>Brief description of story 2. Engaging content goes here.</p>
+                <div class="button-container">
+                    <span class="like-comment-btn">👍 Like</span>
+                    <span class="like-comment-btn">💬 Comment</span>
+                </div>
+            </div>
+            <div class="story-card">
+                <img src="https://via.placeholder.com/300x200" alt="Story 3">
+                <h3>Story Title 3</h3>
+                <p>Brief description of story 3. Engaging content goes here.</p>
+                <div class="button-container">
+                    <span class="like-comment-btn">👍 Like</span>
+                    <span class="like-comment-btn">💬 Comment</span>
+                </div>
+            </div>
+            <div class="story-card">
+                <img src="https://via.placeholder.com/300x200" alt="Story 4">
+                <h3>Story Title 4</h3>
+                <p>Brief description of story 4. Engaging content goes here.</p>
+                <div class="button-container">
+                    <span class="like-comment-btn">👍 Like</span>
+                    <span class="like-comment-btn">💬 Comment</span>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Top Creators Section -->
+    <section class="top-creators">
+        <h2>Top Creators</h2>
+        <div class="creator gold-badge">Creator 1</div>
+        <div class="creator silver-cup">Creator 2</div>
+        <div class="creator bronze-cup">Creator 3</div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Readers Say</h2>
+        <p class="testimonial">"This blog has changed my perspective!" - Reader 1</p>
+        <p class="testimonial">"I love the variety of stories shared here." - Reader 2</p>
+        <p class="testimonial">"A great place to discover new ideas!" - Reader 3</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</button>
+
+    <script>
+        // Back to Top Button
+        window.onscroll = function () {
+            const button = document.getElementById("back-to-top");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                button.style.display = "block";
+            } else {
+                button.style.display = "none";
+            }
+        };
+    </script>
+</body>
+
+</html>

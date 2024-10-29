@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog Platform</title>
+  <script src="https://cdn.tiny.cloud/1/lg4hs76u151ciqhwn14mfbw3ho655qz9fsnd9v8v1lpl0brl/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+        selector: '#content1',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table wordcount mediaembed casechange editimagtableofcontentse  mergetags footnotes',
+        toolbar: 'undo redo | blocks fontfamily fontsize | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        menubar: 'file edit view insert format tools table help',
+    });
+  </script>
+  <link rel="stylesheet" href="/public/slideshow.css">
+  <script src="/public/slide.js" defer></script>
+</head>
+<style>
+    .container {
+        display: flex;
+    }
+    .content {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        margin-left: 10px;
+    }
+    .image {
+        border: 1px solid black;
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+        border-radius: 50%;
+        margin-left: 3px;
+    }
+    img {
+        width: 50px;
+        height: auto;
+        object-fit: cover;
+    }
+    h3 {
+        margin-left: 10px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    .a {
+        padding: 10px;
+        border-radius: 4px;
+        width: 100%;
+    }
+    .line {
+        display: none;
+    }
+    .title, .author, .content1 {
+        margin-bottom: 10px; 
+    }
+    input[type='text'] {
+        padding: 8px;
+        margin-left: 5px;
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    button {
+        background-color: black;
+        color: violet;
+        padding: 8px;
+        margin-bottom: 10px;
+        width: fit-content;
+        border-radius: 5px;
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .hint{
+        background-color: black;
+        color: violet;
+        padding: 8px;
+        width: fit-content;
+        border-radius: 5px;
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-left: 1200px;
+    }
+</style>
+<body> 
+    <div class="container">
+        <div class="image">
+            <img src="/public/logo.jpg">
+        </div>
+        <h3>Writer's Wave</h3>
+        <button class="hint" id="toggleButton">Get Hints</button>
+        <button class='hint' id="closeButton" style="display: none;">Remove Hints</button>
+        <script src="/public/hint.js"></script>
+    </div>
+    <div class="content">
+        <div class="a">
+            <form action="/texte" method="post">
+                <div class="title">
+                    <label>Title</label>
+                    <input type="text" name="title">
+                </div>
+                <div class="author">
+                    <label>Author</label>
+                    <input type="text" name="author">
+                </div>
+                <div class="content1">
+                    <textarea id="content1" name="content" placeholder="Enter content here..."></textarea>
+                </div>
+                <button type="submit">POST</button>
+            </form>
+        </div>
+        <div class="line"></div>
+        <div class="slide">
+            <div class="slideshow-container" data-index="0">
+                <p>To change the font to bold italic underline etc..</p>
+                <div class="slides">
+                    <img src="/public/bold1.jpeg" alt="Slide 1">
+                    <img src="/public/bold2.jpeg" alt="Slide 2">
+                    <img src="/public/bold3.jpeg" alt="Slide 3">
+                    <img src="/public/bold4.jpeg" alt="Slide 4">
+                </div>
+                <button class="prev" onclick="plusSlides(-1,0)">&#10094;</button>
+                <button class="next" onclick="plusSlides(1,0)">&#10095;</button>
+            </div>
+            <div class="slideshow-container">
+                <p>To change the font size and style</p>
+                <div class="slides" data-index="1">
+                    <img src="/public/bold1.jpeg" alt="Slide 1">
+                    <img src="/public/bold2.jpeg" alt="Slide 2">
+                    <img src="/public/s1.png" alt="Slide 3">
+                    <img src="/public/s2.png" alt="Slide 4">
+                    <img src="/public/s3.png" alt="Slide 5">
+                    <img src="/public/s4.png" alt="Slide 6">
+                </div>
+                <button class="prev" onclick="plusSlides(-1,1)">&#10094;</button>
+                <button class="next" onclick="plusSlides(1,1)">&#10095;</button>
+            </div>
+            <div class="slideshow-container">
+                <p>Numbered&Bullet lists</p>
+                <div class="slides" data-index="3">
+                    <img src="/public/nl1.png" alt="Slide 1">
+                    <img src="/public/nl2.png" alt="Slide 2">
+                    <img src="/public/nl3.png" alt="Slide 3">
+                    <img src="/public/nl4.png" alt="Slide 4">
+                </div>
+                <button class="prev" onclick="plusSlides(-1,2)">&#10094;</button>
+                <button class="next" onclick="plusSlides(1,2)">&#10095;</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
